@@ -67,7 +67,7 @@ void read_csv(char *in, char *out) {
 			ind = nxt_index(s, ind);
 		}
 	}
-	int fileb = open(out, O_CREAT | O_WRONLY, 0777);
+	int fileb = open(out, O_CREAT | O_TRUNC | O_WRONLY, 0777);
 	if (fileb==-1) {
 		printf("Error in writing to file %s\n%s\n", out, strerror(errno));
 		return;
