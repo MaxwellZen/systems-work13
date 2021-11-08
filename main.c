@@ -133,9 +133,31 @@ void update_data(char *out) {
 	printf("File [%s] updated.\n", out);
 }
 
-int main() {
-	read_csv("data.csv", "nyc_pop.data");
-	add_data("nyc_pop.data");
-	update_data("nyc_pop.data");
-	read_data("nyc_pop.data");
+void printerror() {
+	printf("Please provide proper command line arguments\n");
+	printf("Possible commands are: \n");
+	printf("$ ./main -read_csv\n");
+	printf("$ ./main -read_data\n");
+	printf("$ ./main -add_data\n");
+	printf("$ ./main -update_data\n");
+}
+
+int main(int argc, char *argv[]) {
+	if (argc < 2) {
+		printerror();
+		return 0;
+	}
+
+	if (argc > 2) printf("Warning: Only the first command line argument will be used\n");
+	if (strcmp(argv[1], "-read_csv")==0) {
+		read_csv("nyc_pop.csv", "nyc_pop.data");
+	} else if (strcmp(argv[1], "-read_data")==0) {
+		read_data("nyc_pop.data");
+	} else if (strcmp(argv[1], "-add_data")==0) {
+		add_data("nyc_pop.data");
+	} else if (strcmp(argv[1], "-update_data")==0) {
+		update_data("nyc_pop.data");
+	} else printerror();
+
+	return 0;
 }
