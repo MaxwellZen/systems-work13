@@ -90,7 +90,9 @@ void read_data(char *in) {
 void add_data(char *out) {
 	printf("Enter year boro pop: ");
 	struct pop_entry a;
-	if (scanf("%d %s %d", &a.year, a.boro, &a.population) != 3) {
+	char in[1000];
+	fgets(in, 1000, stdin);
+	if (sscanf(in, "%d %s %d", &a.year, a.boro, &a.population) != 3) {
 		printf("Please enter the data in the correct format\n");
 		return;
 	}
@@ -112,7 +114,9 @@ void update_data(char *out) {
 	sz /= sizeof(struct pop_entry);
 	int i;
 	printf("Entry to update: ");
-	if (scanf("%d", &i) != 1) {
+	char in[1000];
+	fgets(in, 1000, stdin);
+	if (sscanf(in, "%d\n", &i) != 1) {
 		printf("Please enter the data in the correct format\n");
 		return;
 	}
@@ -121,8 +125,9 @@ void update_data(char *out) {
 		return;
 	}
 	printf("Enter year boro pop: ");
+	fgets(in, 1000, stdin);
 	struct pop_entry a;
-	if (scanf("%d %s %d", &a.year, a.boro, &a.population) != 3) {
+	if (sscanf(in, "%d %s %d", &a.year, a.boro, &a.population) != 3) {
 		printf("Please enter the data in the correct format\n");
 		return;
 	}
